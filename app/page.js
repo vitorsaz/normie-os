@@ -57,12 +57,14 @@ const MOCK_TOKENS = [
 ]
 
 const GALLERY_ITEMS = [
-  { id: 1, title: 'Normie #1', desc: 'Just a normal one' },
-  { id: 2, title: 'Normie #2', desc: 'Looking good' },
-  { id: 3, title: 'Normie #3', desc: 'Moon mission' },
-  { id: 4, title: 'Normie #4', desc: 'Diamond hands' },
-  { id: 5, title: 'Normie #5', desc: 'Morning vibes' },
-  { id: 6, title: 'Normie #6', desc: 'Night mode' },
+  { id: 1, src: '/gallery/1.png', title: 'The Beginning', desc: 'Where it all started' },
+  { id: 2, src: '/gallery/2.png', title: 'Diamond Hands', desc: 'Never selling' },
+  { id: 3, src: '/gallery/3.png', title: 'Moon Mission', desc: 'To the moon' },
+  { id: 4, src: '/gallery/4.png', title: 'Normie Life', desc: 'Just vibing' },
+  { id: 5, src: '/gallery/5.png', title: 'WAGMI', desc: 'We all gonna make it' },
+  { id: 6, src: '/gallery/6.png', title: 'Pump It', desc: 'Number go up' },
+  { id: 7, src: '/gallery/7.png', title: 'Hodl Mode', desc: 'Holding strong' },
+  { id: 8, src: '/gallery/8.png', title: 'Legendary', desc: 'The final form' },
 ]
 
 // ═══════════════════════════════════════════════════════════════
@@ -347,17 +349,38 @@ const TokenCard = ({ token, index }) => (
   </div>
 )
 
-// Gallery Item
+// Gallery Item with fancy frame
 const GalleryItem = ({ item, index }) => (
   <div
-    className="paint-frame-sm bg-gradient-to-br from-[#E8F5E9] to-[#C8E6C9] p-4 text-center hover:scale-105 transition-transform cursor-pointer animate-slide-up"
-    style={{ animationDelay: `${index * 0.05}s` }}
+    className="group relative animate-slide-up"
+    style={{ animationDelay: `${index * 0.08}s` }}
   >
-    <div className="w-16 h-16 mx-auto mb-3 rounded-full overflow-hidden paint-frame-sm animate-float-slow" style={{ animationDelay: `${index * 0.3}s` }}>
-      <img src="/logo.png" alt={item.title} className="w-full h-full object-cover" />
+    {/* Outer decorative frame */}
+    <div className="absolute -inset-2 bg-gradient-to-br from-[#4A5D23] via-[#6B8E23] to-[#8FBC8F] rounded-2xl opacity-80 group-hover:opacity-100 transition-opacity"></div>
+
+    {/* Inner frame with photo */}
+    <div className="relative bg-gradient-to-br from-[#E8F5E9] to-[#C8E6C9] rounded-xl overflow-hidden border-4 border-[#2F3E1C] shadow-lg group-hover:shadow-2xl transition-all group-hover:scale-[1.02]">
+      {/* Corner decorations */}
+      <div className="absolute top-1 left-1 w-3 h-3 border-t-2 border-l-2 border-[#4A5D23]"></div>
+      <div className="absolute top-1 right-1 w-3 h-3 border-t-2 border-r-2 border-[#4A5D23]"></div>
+      <div className="absolute bottom-8 left-1 w-3 h-3 border-b-2 border-l-2 border-[#4A5D23]"></div>
+      <div className="absolute bottom-8 right-1 w-3 h-3 border-b-2 border-r-2 border-[#4A5D23]"></div>
+
+      {/* Image container */}
+      <div className="aspect-square overflow-hidden">
+        <img
+          src={item.src}
+          alt={item.title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+      </div>
+
+      {/* Title plate at bottom */}
+      <div className="bg-gradient-to-r from-[#4A5D23] via-[#6B8E23] to-[#4A5D23] px-3 py-2 text-center border-t-2 border-[#2F3E1C]">
+        <h3 className="font-bold text-[#E8F5E9] text-sm truncate">{item.title}</h3>
+        <p className="text-xs text-[#C8E6C9]/80 truncate">{item.desc}</p>
+      </div>
     </div>
-    <h3 className="font-bold">{item.title}</h3>
-    <p className="text-sm text-[#2F3E1C]/70">{item.desc}</p>
   </div>
 )
 
@@ -549,11 +572,11 @@ export default function TradingDashboard() {
           {/* GALLERY TAB */}
           {activeTab === 'gallery' && (
             <div>
-              <h3 className="font-bold mb-4 flex items-center gap-2">
+              <h3 className="font-bold mb-6 flex items-center gap-2 text-xl">
                 <Icons.ImageIcon />
                 Normie Gallery
               </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-2">
                 {GALLERY_ITEMS.map((item, i) => (
                   <GalleryItem key={item.id} item={item} index={i} />
                 ))}
