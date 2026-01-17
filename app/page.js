@@ -35,21 +35,21 @@ const MOCK_TRADES = [
 ]
 
 const MOCK_TOKENS = [
-  { ca: 'abc...', symbol: 'DOGE2', name: 'Doge 2.0', mc: '45.2K', status: 'holding', score: 85, logo: '🐕' },
-  { ca: 'def...', symbol: 'PEPE', name: 'Pepe Classic', mc: '120K', status: 'sold_tp', score: 72, logo: '🐸' },
-  { ca: 'ghi...', symbol: 'WOJAK', name: 'Wojak', mc: '28.5K', status: 'analyzing', score: 91, logo: '😢' },
-  { ca: 'jkl...', symbol: 'MOON', name: 'To The Moon', mc: '15.8K', status: 'rejected', score: 45, logo: '🌙' },
-  { ca: 'mno...', symbol: 'CHAD', name: 'Chad Token', mc: '89.3K', status: 'approved', score: 78, logo: '💪' },
-  { ca: 'pqr...', symbol: 'COPE', name: 'Cope Coin', mc: '5.2K', status: 'rejected', score: 32, logo: '🎭' },
+  { ca: 'abc...', symbol: 'DOGE2', name: 'Doge 2.0', mc: '45.2K', status: 'holding', score: 85 },
+  { ca: 'def...', symbol: 'PEPE', name: 'Pepe Classic', mc: '120K', status: 'sold_tp', score: 72 },
+  { ca: 'ghi...', symbol: 'WOJAK', name: 'Wojak', mc: '28.5K', status: 'analyzing', score: 91 },
+  { ca: 'jkl...', symbol: 'MOON', name: 'To The Moon', mc: '15.8K', status: 'rejected', score: 45 },
+  { ca: 'mno...', symbol: 'CHAD', name: 'Chad Token', mc: '89.3K', status: 'approved', score: 78 },
+  { ca: 'pqr...', symbol: 'COPE', name: 'Cope Coin', mc: '5.2K', status: 'rejected', score: 32 },
 ]
 
-const GALLERY_IMAGES = [
-  { id: 1, emoji: '🐕', title: 'Normie Dog', desc: 'Just a normal dog' },
-  { id: 2, emoji: '🎩', title: 'Fancy Normie', desc: 'Looking dapper' },
-  { id: 3, emoji: '🚀', title: 'Moon Mission', desc: 'To the moon!' },
-  { id: 4, emoji: '💎', title: 'Diamond Hands', desc: 'HODL forever' },
-  { id: 5, emoji: '☕', title: 'Morning Vibes', desc: 'gm fren' },
-  { id: 6, emoji: '🌙', title: 'Night Mode', desc: 'gn fren' },
+const GALLERY_ITEMS = [
+  { id: 1, title: 'Normie #1', desc: 'Just a normal one' },
+  { id: 2, title: 'Normie #2', desc: 'Looking good' },
+  { id: 3, title: 'Normie #3', desc: 'Moon mission' },
+  { id: 4, title: 'Normie #4', desc: 'Diamond hands' },
+  { id: 5, title: 'Normie #5', desc: 'Morning vibes' },
+  { id: 6, title: 'Normie #6', desc: 'Night mode' },
 ]
 
 // ═══════════════════════════════════════════════════════════════
@@ -118,6 +118,77 @@ const Icons = {
       <line x1="10" y1="14" x2="21" y2="3"/>
     </svg>
   ),
+  Bot: () => (
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="11" width="18" height="10" rx="2"/>
+      <circle cx="12" cy="5" r="2"/>
+      <path d="M12 7v4"/>
+      <line x1="8" y1="16" x2="8" y2="16"/>
+      <line x1="16" y1="16" x2="16" y2="16"/>
+    </svg>
+  ),
+  BotSmall: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="11" width="18" height="10" rx="2"/>
+      <circle cx="12" cy="5" r="2"/>
+      <path d="M12 7v4"/>
+      <line x1="8" y1="16" x2="8" y2="16"/>
+      <line x1="16" y1="16" x2="16" y2="16"/>
+    </svg>
+  ),
+  Rocket: () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+      <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+    </svg>
+  ),
+  TrendUp: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+      <polyline points="17 6 23 6 23 12"/>
+    </svg>
+  ),
+  TrendDown: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+      <polyline points="17 18 23 18 23 12"/>
+    </svg>
+  ),
+  Activity: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+    </svg>
+  ),
+  Zap: () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+    </svg>
+  ),
+  Target: () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <circle cx="12" cy="12" r="6"/>
+      <circle cx="12" cy="12" r="2"/>
+    </svg>
+  ),
+  Coffee: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+      <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
+      <line x1="6" y1="2" x2="6" y2="4"/>
+      <line x1="10" y1="2" x2="10" y2="4"/>
+      <line x1="14" y1="2" x2="14" y2="4"/>
+    </svg>
+  ),
+  Token: () => (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 6v12"/>
+      <path d="M6 12h12"/>
+    </svg>
+  ),
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -147,8 +218,8 @@ const LoadingScreen = () => (
     <div className="relative">
       <div className="absolute inset-0 w-40 h-40 border-4 border-[#5D4E37] rounded-full animate-spin-slow"
            style={{ borderTopColor: '#FFD93D', borderRightColor: 'transparent' }}></div>
-      <div className="w-32 h-32 m-4 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center text-6xl animate-bounce-slow paint-frame">
-        🐕
+      <div className="w-32 h-32 m-4 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center animate-bounce-slow paint-frame text-[#5D4E37]">
+        <Icons.Bot />
       </div>
     </div>
     <h1 className="text-4xl font-black mt-8 text-[#5D4E37]">{CONFIG.name}</h1>
@@ -222,9 +293,10 @@ const TradeRow = ({ trade, index }) => (
     style={{ animationDelay: `${index * 0.05}s` }}
   >
     <div className="flex items-center gap-3">
-      <span className={`px-2 py-1 rounded font-bold text-xs ${
+      <span className={`px-2 py-1 rounded font-bold text-xs flex items-center gap-1 ${
         trade.tipo === 'BUY' ? 'bg-green-400 text-green-900' : 'bg-red-400 text-red-900'
       }`}>
+        {trade.tipo === 'BUY' ? <Icons.TrendUp /> : <Icons.TrendDown />}
         {trade.tipo}
       </span>
       <div>
@@ -257,8 +329,8 @@ const TokenCard = ({ token, index }) => (
   >
     <div className="flex items-start justify-between mb-3">
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center text-2xl paint-frame-sm">
-          {token.logo}
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center paint-frame-sm text-[#5D4E37]">
+          <Icons.Token />
         </div>
         <div>
           <h3 className="font-bold text-lg">{token.symbol}</h3>
@@ -287,8 +359,8 @@ const GalleryItem = ({ item, index }) => (
     className="paint-frame-sm bg-gradient-to-br from-[#FFF5E6] to-[#FFE4C4] p-4 text-center hover:scale-105 transition-transform cursor-pointer animate-slide-up"
     style={{ animationDelay: `${index * 0.05}s` }}
   >
-    <div className="text-6xl mb-3 animate-float-slow" style={{ animationDelay: `${index * 0.3}s` }}>
-      {item.emoji}
+    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center paint-frame-sm text-[#5D4E37] animate-float-slow" style={{ animationDelay: `${index * 0.3}s` }}>
+      <Icons.BotSmall />
     </div>
     <h3 className="font-bold">{item.title}</h3>
     <p className="text-sm text-[#5D4E37]/70">{item.desc}</p>
@@ -338,8 +410,8 @@ export default function TradingDashboard() {
           <div className="relative flex flex-col md:flex-row items-center gap-6">
             {/* Logo */}
             <div className="relative">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center text-5xl paint-frame animate-bounce-slow">
-                🐕
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center paint-frame animate-bounce-slow text-[#5D4E37]">
+                <Icons.Bot />
               </div>
               <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-400 rounded-full border-2 border-[#5D4E37] animate-pulse"></div>
             </div>
@@ -348,7 +420,7 @@ export default function TradingDashboard() {
             <div className="flex-1 text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start gap-2">
                 <h1 className="text-3xl md:text-4xl font-black text-[#5D4E37]">{CONFIG.name}</h1>
-                <span className="text-2xl animate-wiggle">🚀</span>
+                <span className="animate-wiggle text-[#5D4E37]"><Icons.Rocket /></span>
               </div>
               <p className="text-[#5D4E37]/80 mt-1">{CONFIG.tagline}</p>
 
@@ -386,12 +458,12 @@ export default function TradingDashboard() {
         {/* TOKEN CA BANNER */}
         <PaintFrame variant="accent" className="animate-pulse-glow">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 text-[#5D4E37]">
               <Icons.Coin />
               <span className="font-bold">Contract Address:</span>
             </div>
             <div className="flex items-center gap-3 flex-1 justify-center">
-              <code className="font-mono text-sm bg-[#5D4E37]/10 px-3 py-1 rounded break-all">
+              <code className="font-mono text-sm bg-[#5D4E37]/10 px-3 py-1 rounded break-all text-[#5D4E37]">
                 {CONFIG.tokenCA}
               </code>
             </div>
@@ -453,7 +525,7 @@ export default function TradingDashboard() {
               {/* Trades List */}
               <div>
                 <h3 className="font-bold mb-3 flex items-center gap-2">
-                  <Icons.Terminal />
+                  <Icons.Activity />
                   Recent Trades
                 </h3>
                 <div className="paint-frame-sm overflow-hidden">
@@ -488,7 +560,7 @@ export default function TradingDashboard() {
                 Normie Gallery
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                {GALLERY_IMAGES.map((item, i) => (
+                {GALLERY_ITEMS.map((item, i) => (
                   <GalleryItem key={item.id} item={item} index={i} />
                 ))}
               </div>
@@ -499,12 +571,16 @@ export default function TradingDashboard() {
           {activeTab === 'about' && (
             <div className="max-w-2xl mx-auto space-y-6">
               <div className="text-center">
-                <div className="text-6xl mb-4 animate-float-slow">🐕</div>
+                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center paint-frame animate-float-slow text-[#5D4E37]">
+                  <Icons.Bot />
+                </div>
                 <h2 className="text-2xl font-bold">What is {CONFIG.name}?</h2>
               </div>
 
               <PaintFrame variant="default" className="text-[#5D4E37]">
-                <h3 className="font-bold text-lg mb-2">🤖 AI-Powered Trading</h3>
+                <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
+                  <Icons.Zap /> AI-Powered Trading
+                </h3>
                 <p>
                   {CONFIG.name} is an AI-powered trading bot that monitors new memecoins on Solana.
                   It analyzes each token using advanced AI and automatically executes trades based on the analysis.
@@ -512,7 +588,9 @@ export default function TradingDashboard() {
               </PaintFrame>
 
               <PaintFrame variant="accent" className="text-[#5D4E37]">
-                <h3 className="font-bold text-lg mb-2">📊 How It Works</h3>
+                <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
+                  <Icons.Target /> How It Works
+                </h3>
                 <ol className="list-decimal list-inside space-y-1">
                   <li>Bot monitors Pump.fun for new tokens</li>
                   <li>AI analyzes narrative, ticker, and image</li>
@@ -523,7 +601,9 @@ export default function TradingDashboard() {
               </PaintFrame>
 
               <PaintFrame variant="light" className="text-[#5D4E37]">
-                <h3 className="font-bold text-lg mb-2">💰 Support the Bot</h3>
+                <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
+                  <Icons.Wallet /> Support the Bot
+                </h3>
                 <p className="mb-3">Send SOL to fund the trading wallet:</p>
                 <div className="flex items-center gap-2">
                   <code className="font-mono text-sm bg-[#5D4E37]/10 px-3 py-2 rounded flex-1 break-all">
@@ -535,15 +615,17 @@ export default function TradingDashboard() {
 
               <div className="text-center text-sm text-[#5D4E37]/60">
                 <p>Not financial advice. Trade at your own risk.</p>
-                <p className="mt-1">© 2024 {CONFIG.name} - All memes reserved</p>
+                <p className="mt-1">2024 {CONFIG.name} - All memes reserved</p>
               </div>
             </div>
           )}
         </PaintFrame>
 
         {/* FOOTER */}
-        <div className="text-center text-sm text-[#5D4E37]/60 pb-4">
-          <p>Built with ☕ by normies, for normies</p>
+        <div className="text-center text-sm text-[#5D4E37]/60 pb-4 flex items-center justify-center gap-2">
+          <span>Built with</span>
+          <Icons.Coffee />
+          <span>by normies, for normies</span>
         </div>
       </div>
     </div>
