@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 // ═══════════════════════════════════════════════════════════════
 // CONFIG
@@ -11,6 +12,18 @@ const CONFIG = {
   tokenCA: '6Etq7viXLtZWCAhnkq2MhAcaz7ggkPKpzASfKax7pump',
   twitter: 'https://twitter.com/NormieOS',
   walletAddress: 'NRMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+}
+
+// ═══════════════════════════════════════════════════════════════
+// COLORS (Verde Musgo)
+// ═══════════════════════════════════════════════════════════════
+const COLORS = {
+  primary: '#4A5D23',
+  secondary: '#6B8E23',
+  accent: '#8FBC8F',
+  text: '#2F3E1C',
+  light: '#E8F5E9',
+  dark: '#1B2E0A',
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -84,7 +97,7 @@ const Icons = {
       <circle cx="12" cy="12" r="3"/>
     </svg>
   ),
-  Image: () => (
+  ImageIcon: () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
       <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -116,24 +129,6 @@ const Icons = {
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
       <polyline points="15 3 21 3 21 9"/>
       <line x1="10" y1="14" x2="21" y2="3"/>
-    </svg>
-  ),
-  Bot: () => (
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="11" width="18" height="10" rx="2"/>
-      <circle cx="12" cy="5" r="2"/>
-      <path d="M12 7v4"/>
-      <line x1="8" y1="16" x2="8" y2="16"/>
-      <line x1="16" y1="16" x2="16" y2="16"/>
-    </svg>
-  ),
-  BotSmall: () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="11" width="18" height="10" rx="2"/>
-      <circle cx="12" cy="5" r="2"/>
-      <path d="M12 7v4"/>
-      <line x1="8" y1="16" x2="8" y2="16"/>
-      <line x1="16" y1="16" x2="16" y2="16"/>
     </svg>
   ),
   Rocket: () => (
@@ -198,11 +193,11 @@ const Icons = {
 // Paint-style Frame
 const PaintFrame = ({ children, variant = 'default', className = '' }) => {
   const variants = {
-    default: 'bg-gradient-to-br from-[#FFAD60] to-[#FF8C42]',
-    light: 'bg-gradient-to-br from-[#FFF5E6] to-[#FFE4C4]',
-    terminal: 'bg-gradient-to-br from-[#3D2E1F] to-[#2D2419]',
-    accent: 'bg-gradient-to-br from-[#FFD93D] to-[#FFBF00]',
-    dark: 'bg-gradient-to-br from-[#5D4E37] to-[#4D3E27]',
+    default: 'bg-gradient-to-br from-[#6B8E23] to-[#4A5D23]',
+    light: 'bg-gradient-to-br from-[#E8F5E9] to-[#C8E6C9]',
+    terminal: 'bg-gradient-to-br from-[#2F3E1C] to-[#1B2E0A]',
+    accent: 'bg-gradient-to-br from-[#8FBC8F] to-[#6B8E23]',
+    dark: 'bg-gradient-to-br from-[#4A5D23] to-[#2F3E1C]',
   }
   return (
     <div className={`${variants[variant]} paint-frame p-4 ${className}`}>
@@ -213,17 +208,16 @@ const PaintFrame = ({ children, variant = 'default', className = '' }) => {
 
 // Loading Screen
 const LoadingScreen = () => (
-  <div className="fixed inset-0 bg-gradient-to-br from-[#FFAD60] via-[#FF8C42] to-[#FFD93D] flex flex-col items-center justify-center z-50">
-    {/* Spinning ring */}
+  <div className="fixed inset-0 bg-gradient-to-br from-[#6B8E23] via-[#4A5D23] to-[#8FBC8F] flex flex-col items-center justify-center z-50">
     <div className="relative">
-      <div className="absolute inset-0 w-40 h-40 border-4 border-[#5D4E37] rounded-full animate-spin-slow"
-           style={{ borderTopColor: '#FFD93D', borderRightColor: 'transparent' }}></div>
-      <div className="w-32 h-32 m-4 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center animate-bounce-slow paint-frame text-[#5D4E37]">
-        <Icons.Bot />
+      <div className="absolute inset-0 w-40 h-40 border-4 border-[#2F3E1C] rounded-full animate-spin-slow"
+           style={{ borderTopColor: '#8FBC8F', borderRightColor: 'transparent' }}></div>
+      <div className="w-32 h-32 m-4 rounded-full overflow-hidden animate-bounce-slow paint-frame">
+        <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
       </div>
     </div>
-    <h1 className="text-4xl font-black mt-8 text-[#5D4E37]">{CONFIG.name}</h1>
-    <p className="mt-2 text-[#5D4E37] opacity-80 animate-blink">Loading...</p>
+    <h1 className="text-4xl font-black mt-8 text-[#E8F5E9]">{CONFIG.name}</h1>
+    <p className="mt-2 text-[#C8E6C9] opacity-80 animate-blink">Loading...</p>
   </div>
 )
 
@@ -241,8 +235,8 @@ const CopyButton = ({ text, label = 'Copy' }) => {
     <button
       onClick={handleCopy}
       className={`retro-btn px-3 py-1 flex items-center gap-1 text-sm ${
-        copied ? 'bg-green-400' : 'bg-[#FFD93D] hover:bg-[#FFE566]'
-      } text-[#5D4E37]`}
+        copied ? 'bg-green-400' : 'bg-[#8FBC8F] hover:bg-[#A5D6A7]'
+      } text-[#2F3E1C]`}
     >
       {copied ? <Icons.Check /> : <Icons.Copy />}
       {copied ? 'Copied!' : label}
@@ -275,8 +269,8 @@ const StatusBadge = ({ status }) => {
 const TabButton = ({ active, onClick, icon, label }) => (
   <button
     onClick={onClick}
-    className={`px-4 py-2 font-bold flex items-center gap-2 border-2 border-b-0 border-[#5D4E37] rounded-t-xl transition-all ${
-      active ? 'tab-active text-[#5D4E37]' : 'tab-inactive text-[#5D4E37]'
+    className={`px-4 py-2 font-bold flex items-center gap-2 border-2 border-b-0 border-[#2F3E1C] rounded-t-xl transition-all ${
+      active ? 'tab-active text-[#E8F5E9]' : 'tab-inactive text-[#2F3E1C]'
     }`}
   >
     {icon}
@@ -288,8 +282,8 @@ const TabButton = ({ active, onClick, icon, label }) => (
 const TradeRow = ({ trade, index }) => (
   <div
     className={`flex items-center justify-between p-3 ${
-      index % 2 === 0 ? 'bg-[#FFE4C4]/50' : 'bg-[#FFF5E6]/50'
-    } hover:bg-[#FFD93D]/30 transition-colors animate-slide-up`}
+      index % 2 === 0 ? 'bg-[#C8E6C9]/50' : 'bg-[#E8F5E9]/50'
+    } hover:bg-[#8FBC8F]/30 transition-colors animate-slide-up`}
     style={{ animationDelay: `${index * 0.05}s` }}
   >
     <div className="flex items-center gap-3">
@@ -301,7 +295,7 @@ const TradeRow = ({ trade, index }) => (
       </span>
       <div>
         <span className="font-bold">{trade.symbol}</span>
-        <span className="text-sm text-[#5D4E37]/70 ml-2">{trade.name}</span>
+        <span className="text-sm text-[#2F3E1C]/70 ml-2">{trade.name}</span>
       </div>
     </div>
     <div className="flex items-center gap-4 text-sm">
@@ -311,10 +305,10 @@ const TradeRow = ({ trade, index }) => (
           {trade.pnl}
         </span>
       )}
-      <span className="text-[#5D4E37]/60">Score: {trade.score}</span>
-      <span className="text-[#5D4E37]/50">{trade.time}</span>
+      <span className="text-[#2F3E1C]/60">Score: {trade.score}</span>
+      <span className="text-[#2F3E1C]/50">{trade.time}</span>
       <a href={`https://solscan.io/tx/${trade.tx}`} target="_blank" rel="noopener noreferrer"
-         className="text-[#FF8C42] hover:text-[#FFAD60]">
+         className="text-[#4A5D23] hover:text-[#6B8E23]">
         <Icons.Link />
       </a>
     </div>
@@ -324,28 +318,28 @@ const TradeRow = ({ trade, index }) => (
 // Token Card
 const TokenCard = ({ token, index }) => (
   <div
-    className="paint-frame-sm bg-gradient-to-br from-[#FFF5E6] to-[#FFE4C4] p-4 hover:scale-[1.02] transition-transform animate-slide-up"
+    className="paint-frame-sm bg-gradient-to-br from-[#E8F5E9] to-[#C8E6C9] p-4 hover:scale-[1.02] transition-transform animate-slide-up"
     style={{ animationDelay: `${index * 0.05}s` }}
   >
     <div className="flex items-start justify-between mb-3">
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center paint-frame-sm text-[#5D4E37]">
-          <Icons.Token />
+        <div className="w-12 h-12 rounded-full overflow-hidden paint-frame-sm">
+          <img src="/logo.png" alt="Token" className="w-full h-full object-cover" />
         </div>
         <div>
           <h3 className="font-bold text-lg">{token.symbol}</h3>
-          <p className="text-sm text-[#5D4E37]/70">{token.name}</p>
+          <p className="text-sm text-[#2F3E1C]/70">{token.name}</p>
         </div>
       </div>
       <StatusBadge status={token.status} />
     </div>
-    <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#5D4E37]/20">
+    <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#2F3E1C]/20">
       <div className="text-sm">
-        <span className="text-[#5D4E37]/60">MC:</span>
+        <span className="text-[#2F3E1C]/60">MC:</span>
         <span className="font-bold ml-1">${token.mc}</span>
       </div>
       <div className="text-sm">
-        <span className="text-[#5D4E37]/60">Score:</span>
+        <span className="text-[#2F3E1C]/60">Score:</span>
         <span className="font-bold ml-1">{token.score}</span>
       </div>
       <CopyButton text={token.ca} label="CA" />
@@ -356,14 +350,14 @@ const TokenCard = ({ token, index }) => (
 // Gallery Item
 const GalleryItem = ({ item, index }) => (
   <div
-    className="paint-frame-sm bg-gradient-to-br from-[#FFF5E6] to-[#FFE4C4] p-4 text-center hover:scale-105 transition-transform cursor-pointer animate-slide-up"
+    className="paint-frame-sm bg-gradient-to-br from-[#E8F5E9] to-[#C8E6C9] p-4 text-center hover:scale-105 transition-transform cursor-pointer animate-slide-up"
     style={{ animationDelay: `${index * 0.05}s` }}
   >
-    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center paint-frame-sm text-[#5D4E37] animate-float-slow" style={{ animationDelay: `${index * 0.3}s` }}>
-      <Icons.BotSmall />
+    <div className="w-16 h-16 mx-auto mb-3 rounded-full overflow-hidden paint-frame-sm animate-float-slow" style={{ animationDelay: `${index * 0.3}s` }}>
+      <img src="/logo.png" alt={item.title} className="w-full h-full object-cover" />
     </div>
     <h3 className="font-bold">{item.title}</h3>
-    <p className="text-sm text-[#5D4E37]/70">{item.desc}</p>
+    <p className="text-sm text-[#2F3E1C]/70">{item.desc}</p>
   </div>
 )
 
@@ -404,41 +398,41 @@ export default function TradingDashboard() {
         {/* HEADER */}
         <PaintFrame variant="default" className="relative overflow-hidden">
           {/* Background decoration */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFD93D]/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#FF8C42]/30 rounded-full blur-2xl"></div>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[#8FBC8F]/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#4A5D23]/30 rounded-full blur-2xl"></div>
 
           <div className="relative flex flex-col md:flex-row items-center gap-6">
             {/* Logo */}
             <div className="relative">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center paint-frame animate-bounce-slow text-[#5D4E37]">
-                <Icons.Bot />
+              <div className="w-24 h-24 rounded-full overflow-hidden paint-frame animate-bounce-slow">
+                <img src="/logo.png" alt="NormieOS Logo" className="w-full h-full object-cover" />
               </div>
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-400 rounded-full border-2 border-[#5D4E37] animate-pulse"></div>
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-400 rounded-full border-2 border-[#2F3E1C] animate-pulse"></div>
             </div>
 
             {/* Title & Info */}
             <div className="flex-1 text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start gap-2">
-                <h1 className="text-3xl md:text-4xl font-black text-[#5D4E37]">{CONFIG.name}</h1>
-                <span className="animate-wiggle text-[#5D4E37]"><Icons.Rocket /></span>
+                <h1 className="text-3xl md:text-4xl font-black text-[#E8F5E9]">{CONFIG.name}</h1>
+                <span className="animate-wiggle text-[#E8F5E9]"><Icons.Rocket /></span>
               </div>
-              <p className="text-[#5D4E37]/80 mt-1">{CONFIG.tagline}</p>
+              <p className="text-[#C8E6C9] mt-1">{CONFIG.tagline}</p>
 
               {/* Quick Stats */}
               <div className="flex flex-wrap gap-4 mt-4 justify-center md:justify-start">
-                <div className="bg-[#FFF5E6]/50 rounded-lg px-3 py-2 paint-frame-sm">
-                  <span className="text-xs text-[#5D4E37]/60">Balance</span>
-                  <p className="font-bold text-lg">{status.balance_sol.toFixed(4)} SOL</p>
+                <div className="bg-[#E8F5E9]/20 rounded-lg px-3 py-2 paint-frame-sm">
+                  <span className="text-xs text-[#C8E6C9]">Balance</span>
+                  <p className="font-bold text-lg text-[#E8F5E9]">{status.balance_sol.toFixed(4)} SOL</p>
                 </div>
-                <div className="bg-[#FFF5E6]/50 rounded-lg px-3 py-2 paint-frame-sm">
-                  <span className="text-xs text-[#5D4E37]/60">Total PNL</span>
-                  <p className={`font-bold text-lg ${status.total_pnl >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                <div className="bg-[#E8F5E9]/20 rounded-lg px-3 py-2 paint-frame-sm">
+                  <span className="text-xs text-[#C8E6C9]">Total PNL</span>
+                  <p className={`font-bold text-lg ${status.total_pnl >= 0 ? 'text-green-300' : 'text-red-300'}`}>
                     {status.total_pnl >= 0 ? '+' : ''}{status.total_pnl.toFixed(4)} SOL
                   </p>
                 </div>
-                <div className="bg-[#FFF5E6]/50 rounded-lg px-3 py-2 paint-frame-sm">
-                  <span className="text-xs text-[#5D4E37]/60">Win Rate</span>
-                  <p className="font-bold text-lg">{status.win_rate.toFixed(1)}%</p>
+                <div className="bg-[#E8F5E9]/20 rounded-lg px-3 py-2 paint-frame-sm">
+                  <span className="text-xs text-[#C8E6C9]">Win Rate</span>
+                  <p className="font-bold text-lg text-[#E8F5E9]">{status.win_rate.toFixed(1)}%</p>
                 </div>
               </div>
             </div>
@@ -448,7 +442,7 @@ export default function TradingDashboard() {
               href={CONFIG.twitter}
               target="_blank"
               rel="noopener noreferrer"
-              className="retro-btn bg-[#5D4E37] text-white p-3 hover:bg-[#4D3E27]"
+              className="retro-btn bg-[#2F3E1C] text-[#E8F5E9] p-3 hover:bg-[#1B2E0A]"
             >
               <Icons.Twitter />
             </a>
@@ -458,12 +452,12 @@ export default function TradingDashboard() {
         {/* TOKEN CA BANNER */}
         <PaintFrame variant="accent" className="animate-pulse-glow">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-[#5D4E37]">
+            <div className="flex items-center gap-3 text-[#2F3E1C]">
               <Icons.Coin />
               <span className="font-bold">Contract Address:</span>
             </div>
             <div className="flex items-center gap-3 flex-1 justify-center">
-              <code className="font-mono text-sm bg-[#5D4E37]/10 px-3 py-1 rounded break-all text-[#5D4E37]">
+              <code className="font-mono text-sm bg-[#2F3E1C]/10 px-3 py-1 rounded break-all text-[#2F3E1C]">
                 {CONFIG.tokenCA}
               </code>
             </div>
@@ -488,7 +482,7 @@ export default function TradingDashboard() {
           <TabButton
             active={activeTab === 'gallery'}
             onClick={() => setActiveTab('gallery')}
-            icon={<Icons.Image />}
+            icon={<Icons.ImageIcon />}
             label="Gallery"
           />
           <TabButton
@@ -506,7 +500,7 @@ export default function TradingDashboard() {
           {activeTab === 'terminal' && (
             <div className="space-y-4">
               {/* Status Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#5D4E37]/20">
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#2F3E1C]/20">
                 <div className="flex items-center gap-4">
                   <StatusBadge status={status.status} />
                   <div className="flex items-center gap-2 text-sm">
@@ -556,7 +550,7 @@ export default function TradingDashboard() {
           {activeTab === 'gallery' && (
             <div>
               <h3 className="font-bold mb-4 flex items-center gap-2">
-                <Icons.Image />
+                <Icons.ImageIcon />
                 Normie Gallery
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -571,13 +565,13 @@ export default function TradingDashboard() {
           {activeTab === 'about' && (
             <div className="max-w-2xl mx-auto space-y-6">
               <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#FFD93D] to-[#FFAD60] flex items-center justify-center paint-frame animate-float-slow text-[#5D4E37]">
-                  <Icons.Bot />
+                <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden paint-frame animate-float-slow">
+                  <img src="/logo.png" alt="NormieOS" className="w-full h-full object-cover" />
                 </div>
                 <h2 className="text-2xl font-bold">What is {CONFIG.name}?</h2>
               </div>
 
-              <PaintFrame variant="default" className="text-[#5D4E37]">
+              <PaintFrame variant="default" className="text-[#E8F5E9]">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
                   <Icons.Zap /> AI-Powered Trading
                 </h3>
@@ -587,7 +581,7 @@ export default function TradingDashboard() {
                 </p>
               </PaintFrame>
 
-              <PaintFrame variant="accent" className="text-[#5D4E37]">
+              <PaintFrame variant="accent" className="text-[#2F3E1C]">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
                   <Icons.Target /> How It Works
                 </h3>
@@ -600,20 +594,20 @@ export default function TradingDashboard() {
                 </ol>
               </PaintFrame>
 
-              <PaintFrame variant="light" className="text-[#5D4E37]">
+              <PaintFrame variant="light" className="text-[#2F3E1C]">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
                   <Icons.Wallet /> Support the Bot
                 </h3>
                 <p className="mb-3">Send SOL to fund the trading wallet:</p>
                 <div className="flex items-center gap-2">
-                  <code className="font-mono text-sm bg-[#5D4E37]/10 px-3 py-2 rounded flex-1 break-all">
+                  <code className="font-mono text-sm bg-[#2F3E1C]/10 px-3 py-2 rounded flex-1 break-all">
                     {CONFIG.walletAddress}
                   </code>
                   <CopyButton text={CONFIG.walletAddress} label="Copy" />
                 </div>
               </PaintFrame>
 
-              <div className="text-center text-sm text-[#5D4E37]/60">
+              <div className="text-center text-sm text-[#2F3E1C]/60">
                 <p>Not financial advice. Trade at your own risk.</p>
                 <p className="mt-1">2024 {CONFIG.name} - All memes reserved</p>
               </div>
@@ -622,7 +616,7 @@ export default function TradingDashboard() {
         </PaintFrame>
 
         {/* FOOTER */}
-        <div className="text-center text-sm text-[#5D4E37]/60 pb-4 flex items-center justify-center gap-2">
+        <div className="text-center text-sm text-[#2F3E1C]/60 pb-4 flex items-center justify-center gap-2">
           <span>Built with</span>
           <Icons.Coffee />
           <span>by normies, for normies</span>
