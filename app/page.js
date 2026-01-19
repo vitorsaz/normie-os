@@ -9,7 +9,7 @@ const CONFIG = {
   name: 'NormieOS',
   tagline: 'For the normies, by the normies',
   tokenCA: '', // To be announced
-  twitter: 'https://twitter.com/NormieOS',
+  twitter: 'https://x.com/NormieOS_',
   walletAddress: 'NRMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
   // Trading simulation config
   initialBalance: 1.0, // Starting with 1 SOL
