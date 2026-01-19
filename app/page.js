@@ -651,18 +651,38 @@ export default function TradingDashboard() {
             if (data.mint) {
               const score = calculateAIScore(data)
 
+              // Get image URL - Pump.fun uses different field names
+              let imageUrl = null
+              if (data.image_uri) {
+                imageUrl = data.image_uri
+              } else if (data.imageUri) {
+                imageUrl = data.imageUri
+              } else if (data.image) {
+                imageUrl = data.image
+              } else if (data.uri && data.uri.startsWith('http')) {
+                // If uri is a direct image URL
+                imageUrl = data.uri
+              }
+
+              // Convert IPFS URLs to gateway URLs if needed
+              if (imageUrl && imageUrl.startsWith('ipfs://')) {
+                imageUrl = imageUrl.replace('ipfs://', 'https://ipfs.io/ipfs/')
+              }
+
               const newToken = {
                 id: data.mint,
                 mint: data.mint,
                 symbol: data.symbol || 'UNKNOWN',
                 name: data.name || 'Unknown Token',
-                image: data.image_uri || data.uri || null,
+                image: imageUrl,
                 score,
                 timestamp: new Date(),
                 time: 'now',
                 isNew: true,
                 ca: data.mint,
               }
+
+              console.log('New token:', data.symbol, 'Image:', imageUrl)
 
               // Add to live tokens feed
               setLiveTokens(prev => [newToken, ...prev].slice(0, 30))

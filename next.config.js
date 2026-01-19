@@ -4,23 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'ipfs.io',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.ipfs.nftstorage.link',
-      },
-      {
-        protocol: 'https',
-        hostname: 'pump.mypinata.cloud',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cf-ipfs.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'arweave.net',
+        hostname: '**',
       },
     ],
     unoptimized: true,
