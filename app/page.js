@@ -643,7 +643,7 @@ export default function TradingDashboard() {
           }))
         }
 
-        ws.onmessage = (event) => {
+        ws.onmessage = async (event) => {
           try {
             const data = JSON.parse(event.data)
 
@@ -651,20 +651,30 @@ export default function TradingDashboard() {
             if (data.mint) {
               const score = calculateAIScore(data)
 
-              // Get image URL - Pump.fun uses different field names
-              let imageUrl = null
-              if (data.image_uri) {
-                imageUrl = data.image_uri
-              } else if (data.imageUri) {
-                imageUrl = data.imageUri
-              } else if (data.image) {
-                imageUrl = data.image
-              } else if (data.uri && data.uri.startsWith('http')) {
-                // If uri is a direct image URL
-                imageUrl = data.uri
+              // Get image URL - try direct fields first
+              let imageUrl = data.image_uri || data.imageUri || data.image || null
+
+              // If no direct image, try to fetch from metadata URI
+              if (!imageUrl && data.uri) {
+                try {
+                  // Convert IPFS URI to gateway URL
+                  let metadataUrl = data.uri
+                  if (metadataUrl.startsWith('ipfs://')) {
+                    metadataUrl = metadataUrl.replace('ipfs://', 'https://ipfs.io/ipfs/')
+                  }
+
+                  // Fetch metadata JSON
+                  const response = await fetch(metadataUrl)
+                  if (response.ok) {
+                    const metadata = await response.json()
+                    imageUrl = metadata.image || metadata.image_uri || null
+                  }
+                } catch (fetchErr) {
+                  console.log('Metadata fetch error:', fetchErr)
+                }
               }
 
-              // Convert IPFS URLs to gateway URLs if needed
+              // Convert IPFS image URLs to gateway URLs
               if (imageUrl && imageUrl.startsWith('ipfs://')) {
                 imageUrl = imageUrl.replace('ipfs://', 'https://ipfs.io/ipfs/')
               }
@@ -682,7 +692,7 @@ export default function TradingDashboard() {
                 ca: data.mint,
               }
 
-              console.log('New token:', data.symbol, 'Image:', imageUrl)
+              console.log('New token:', data.symbol, 'Image:', imageUrl, 'Raw data:', data)
 
               // Add to live tokens feed
               setLiveTokens(prev => [newToken, ...prev].slice(0, 30))
