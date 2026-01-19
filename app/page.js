@@ -8,7 +8,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 const CONFIG = {
   name: 'NormieOS',
   tagline: 'For the normies, by the normies',
-  tokenCA: '6Etq7viXLtZWCAhnkq2MhAcaz7ggkPKpzASfKax7pump',
+  tokenCA: '', // To be announced
   twitter: 'https://twitter.com/NormieOS',
   walletAddress: 'NRMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
   // Trading simulation config
@@ -826,21 +826,23 @@ export default function TradingDashboard() {
           </div>
         </PaintFrame>
 
-        {/* TOKEN CA BANNER */}
-        <PaintFrame variant="accent" className="animate-pulse-glow">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-[#2F3E1C]">
-              <Icons.Coin />
-              <span className="font-bold">Contract Address:</span>
+        {/* TOKEN CA BANNER - only show if CA is set */}
+        {CONFIG.tokenCA && (
+          <PaintFrame variant="accent" className="animate-pulse-glow">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3 text-[#2F3E1C]">
+                <Icons.Coin />
+                <span className="font-bold">Contract Address:</span>
+              </div>
+              <div className="flex items-center gap-3 flex-1 justify-center">
+                <code className="font-mono text-sm bg-[#2F3E1C]/10 px-3 py-1 rounded break-all text-[#2F3E1C]">
+                  {CONFIG.tokenCA}
+                </code>
+              </div>
+              <CopyButton text={CONFIG.tokenCA} label="Copy CA" />
             </div>
-            <div className="flex items-center gap-3 flex-1 justify-center">
-              <code className="font-mono text-sm bg-[#2F3E1C]/10 px-3 py-1 rounded break-all text-[#2F3E1C]">
-                {CONFIG.tokenCA}
-              </code>
-            </div>
-            <CopyButton text={CONFIG.tokenCA} label="Copy CA" />
-          </div>
-        </PaintFrame>
+          </PaintFrame>
+        )}
 
         {/* TABS */}
         <div className="flex gap-1 overflow-x-auto pb-0">
